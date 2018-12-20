@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../jquery-3.3.1.js"></script>
+    <script src="./jquery.qrcode.js"></script>
+    <script src="./qrcode.js"></script>
+</head>
+
+<body>
+    <!-- 制作网站： https://cli.im/ -->
+    <div id="qrcode"></div>
+    <script type="text/javascript">
+        $('#qrcode').qrcode({
+            render: "canvas",
+            text: "https://github.com/AnitaYT/day",
+        })
+        // $('#qrcode').qrcode({
+        //         width: 64,
+        //         // 设置宽度
+        //         height: 64,
+        //         // 设置高度
+        //         typeNumber: -1,
+        //         // 计算模式
+        //         correctLevel: QRErrorCorrectLevel.H,
+        //         //纠错等级  
+        //         background: "red",
+        //         //背景颜色  
+        //         foreground: "blue",
+        //         //前景颜色
+        //         text: utf16to8("我的尺寸是 64*64")
+        //     })
+        //     function utf16to8(str) {
+        //         var out, i, c
+        //         out = ""
+        //         for (i = 0; i < str.length; i++) {
+        //             c = str.charCodeAt(i)
+        //             if ((c >= 0x0001) && (c <= 0x007F)) {
+        //                 out += str.charAt(i)
+        //             } else if (c > 0x07FF) {
+        //                 out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F))
+        //                 out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F))
+        //                 out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F))
+        //             } else {
+        //                 out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F))
+        //                 out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F))
+        //             }
+        //         }
+        //         return out
+        //     }
+    </script>
+
+</body>
+
+</html>
