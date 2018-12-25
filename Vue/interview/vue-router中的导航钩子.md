@@ -16,9 +16,24 @@ beforeEnter
 
 ### 3 、路由组件上的导航钩子
 
-beforeRouteEnter、
-beforeRouteUpdate (2.2 新增)、
-beforeRouteLeave、
+1.beforeRouteEnter、
+
+2.beforeRouteUpdate (2.2 新增)、
+
+3.beforeRouteLeave
+
+```
+// 拦截浏览器后退实现草稿保存类似需求
+//在路由组件中
+beforeRouteLeave (to, from, next) {
+    if(用户已经输入信息){
+    //出现弹窗提醒保存草稿，或者自动后台为其保存
+    }else{
+    next(true);//用户离开
+    }
+}
+
+```
 
 ### 完整的导航解析流程：
 
