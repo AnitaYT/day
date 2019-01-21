@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-vn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>前端于客户端交互</title>
+</head>
+
+<body>
+    <!-- 1.嵌入app内的前端页面与客户端交互 -->
+    <button id="openApp">跳转</button>
+
+    <script type="text/javascript">
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+        document.getElementById('openApp').onclick = function () {
+            if (isiOS) {
+                // 跳转app store
+                // window.location.href = "itms-apps://itunes.apple.com/app/search";
+                // 客户方定的方法xxx，跳转app，并传参数(无数据为null)
+                window.webkit.messageHandlers.xxx.postMessage({
+                    title: '测试分享的标题',
+                    content: '测试分享的内容',
+                    url: 'http://www.baidu.com'
+                })
+            } else if (isAndroid) {
+                Ierfa.checkDetail({
+                    // 方法
+                })
+            }
+        }
+    </script>
+
+    <!-- 2.app外的（浏览器中）前端页面与客户端交互 -->
+    <div>参考链接</div>
+    <a href="https://www.jianshu.com/p/e3d3939f5189">H5按钮唤起APP应用（IOS）或跳转至APP store</a>
+    <br>
+    <!-- <a href="">前端webapp开发</a> -->
+
+    <div>
+        <div></div>
+        <div>成功 !</div>
+        <a class="a-btn" style="display: none;">返回</a>
+        <a class="i-btn" href="xxxxxx://" style="display: none;">返回</a>
+    </div>
+    <script type="text/javascript">
+        var u = navigator.userAgent; // 用户代理
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+        var isiIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+        var d = new Date();
+        var t0 = d.getTime();
+        $(function () {
+            if (isAndroid) {
+                $(".a-btn").show();
+            } else if (isiIOS) {
+                $(".i-btn").show();
+            }
+        });
+        $(".a-btn").click(function () {
+            window.gubaiwan.goBack();
+        });
+        $(".i-btn").click(function () {
+            openApp("IOS App Store下载链接");  // 下载链接
+        });
+
+        function openApp(src) {
+            var delay = setInterval(function () {
+                var d = new Date();
+                var t1 = d.getTime();
+                if (t1 - t0 < 3000 && t1 - t0 > 2000) {
+                    alert('请下载APP');
+                    window.location.href = src;
+                }
+                if (t1 - t0 >= 3000) {
+                    clearInterval(delay);
+                }
+            }, 2000);
+        }
+        // 注意：
+        // <a href="苹果URL scheme://" class="i-btn" style="display: none">苹果</a>
+        // 注：在IOS中设置URL scheme
+        // 前端跳转代码中需要在URL scheme后添加://，否则无法完成跳转。
+    </script>
+    
+</body>
+
+</html>
