@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="../build/react.js"></script>
+  <script src="../build/react-dom.js"></script>
+  <script src="../build/browser.min.js"></script>
+</head>
+
+<body>
+  <!-- this.refs -->
+  <div id="example"></div>
+  <script type="text/babel">
+var MyComponent = React.createClass({
+  handleClick: function() {
+    // 有时需要从组件获取真实 DOM 的节点，这时就要用到 ref 属性
+    this.refs.myTextInput.focus();
+  },
+  render: function() {
+    return (
+      <div>
+        <input type="text" ref="myTextInput" />
+        <input type="button" value="Focus the text input" onClick={this.handleClick} />
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <MyComponent />,
+  document.getElementById('example')
+);
+    </script>
+</body>
+
+</html>

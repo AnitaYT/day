@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+    <style>
+    .change {
+      color: red;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      // React.createClass 用于生成一个组件类
+      var HelloMessage = React.createClass({
+      // 所有组件类都 必须 有自己的 render 方法，用于输出组件。
+        render: function() {
+          // 组件类只能包含一个顶级标签
+          // 添加组件属性，有一个地方需要注意，就是 class 属性需要写成 className，for 属性需要写成 htmlFor，这是因为 class 和 for 是 JavaScript 的保留字。
+          return <h1 class = {{this.props.className}}>{this.props.class}Hello {this.props.name} has {this.props.age} years old ! </h1>;
+        }
+      });
+
+      ReactDOM.render(
+        // HelloMessage: 组件 首字母要大写
+        <HelloMessage name="John" age="18" className="change"/>,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>

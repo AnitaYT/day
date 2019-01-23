@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- 核心库 -->
+    <script src="../build/react.js"></script>
+    <!-- 提供与DOM相关的功能 -->
+    <script src="../build/react-dom.js"></script>
+    <!-- 将JSX语法转化为JavaScript -->
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <!-- type="text/babel" : 凡事jsx语法都要加上这个 -->
+    <script type="text/babel">
+    // ReactDOM.render：React的最基本方法，用于将模板转为 HTML 语言，并插入指定的 DOM 节点。
+      ReactDOM.render(
+        // HTML 语言直接写在 JavaScript 语言之中，不加任何引号，这就是 JSX 的语法，它允许 HTML 与 JavaScript 的混写
+        <h1>Hello, world!</h1>,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>
