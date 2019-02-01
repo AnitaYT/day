@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>按钮文字滑动效果</title>
+    <style>
+        div {
+            width: 200px;
+            height: 60px;
+            line-height: 60px;
+            border: 2px solid black;
+            text-align: center;
+            font-size: 30px;
+            margin: 50px;
+            overflow: hidden;
+        }
+
+        div span {
+            color: blue;
+            display: inline-block;
+            transition: .5s;
+        }
+
+        div span:nth-child(odd) {
+            transform: translateY(-100%);
+        }
+
+        div span:nth-child(even) {
+            transform: translateY(100%);
+        }
+
+        div span::before {
+            content: attr(data-text);
+            position: absolute;
+            color: red;
+        }
+
+        div span:nth-child(odd)::before {
+            transform: translateY(100%);
+        }
+
+        div span:nth-child(even)::before {
+            transform: translateY(-100%);
+        }
+
+        div:hover span {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <span data-text="A">A</span>
+        <span data-text="n">n</span>
+        <span data-text="i">i</span>
+        <span data-text="t">t</span>
+        <span data-text="a">a</span>
+    </div>
+</body>
+
+</html>

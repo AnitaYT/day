@@ -6,14 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        #box1 {
+            height: 100px;
+            width: 100px;
+            background: green;
+            transition: background 2s ease, transform 2s ease-in 1s;
+        }
+
+        #box1:hover {
+            transform: rotate(180deg) scale(.5, .5);
+            background: red;
+        }
+
+        #box2 {
+            height: 100px;
+            width: 100px;
+            background: blue;
+        }
+
+        #box2:hover {
+            transform: rotate(180deg) scale(.5, .5);
+            background: red;
+            transition: background 2s ease, transform 2s ease-in 1s;
+        }
+
+        /* animation */
+        .box {
+            height: 100px;
+            width: 100px;
+            border: 15px solid black;
+            animation: changebox 10s ease-in-out 3s alternate running;
+        }
+
+        .box:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes changebox {
+            10% {
+                background: red;
+            }
+
+            50% {
+                width: 80px;
+            }
+
+            70% {
+                border: 15px solid yellow;
+            }
+
+            100% {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
+
+
 </head>
 
 <body>
-    <script>
-        window.onhashchange = function (event) {
-            console.log(event);
-        }
-    </script>
+    <div id="box1">BOX1</div>
+    <div id="box2">BOX2</div>
+    <div class="box"></div>
 </body>
 
 </html>

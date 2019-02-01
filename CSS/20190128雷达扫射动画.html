@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, silver, black);
+        }
+
+        .radar {
+            width: calc(8em + 1.5em);
+            height: calc(8em + 1.5em);
+            font-size: 28px;
+            position: relative;
+            background:
+                linear-gradient(90deg,
+                transparent 49.75%,
+                darkgreen 49.75%,
+                darkgreen 50.25%,
+                transparent 50.25%),
+                linear-gradient(transparent 49.75%,
+                darkgreen 49.75%,
+                darkgreen 50.25%,
+                transparent 50.25%),
+                /* repeating-radial-gradient(transparent 0,
+                transparent 0.95em,
+                darkgreen 0.95em,
+                darkgreen 1em), */
+                linear-gradient(black, black);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="radar"></div>
+</body>
+
+</html>

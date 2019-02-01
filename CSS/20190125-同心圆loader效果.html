@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>同心圆loader效果</title>
+    <style>
+        body {
+            font-size: .7rem;
+            background: #000;
+        }
+
+        .circle {
+            width: 300px;
+            height: 300px;
+            border-top-color: orange;
+            border-bottom-color: blue;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .circle::before,
+        .circle::after {
+            content: '';
+            position: absolute;
+        }
+
+        .circle::before {
+            width: 60%;
+            height: 60%;
+            border-top-color: pink;
+            border-bottom-color: cyan;
+            animation-duration: 8s;
+        }
+
+        .circle::after {
+            width: 40%;
+            height: 40%;
+            border-top-color: purple;
+            border-bottom-color: darkred;
+            animation-duration: 16s;
+        }
+
+        @keyframes animate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(1440deg);
+            }
+        }
+
+        .circle,
+        .circle::before,
+        .circle::after {
+            border-width: .7em;
+            border-style: solid;
+            border-radius: 50%;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            animation: animate 4s ease-in-out infinite alternate;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="circle"></div>
+</body>
+
+</html>
