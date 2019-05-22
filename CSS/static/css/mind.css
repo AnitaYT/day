@@ -1,0 +1,86 @@
+:root {
+    --yellow: #ffd100;
+    --orange: #ff6a13;
+    --darkGray: #53565a;
+    --midGray: #888b8d;
+    --white: #fff;
+  }
+  
+  *, *:after, *:before {
+    box-sizing: border-box;
+    color: var(--darkGray);
+  }
+  
+  body {
+    font-family: Nunito;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    place-items: center;
+    margin: 0;
+    background: var(--white);
+  }
+  
+  #slider {
+    --roundness: 20px;
+    padding: 4vw;
+    display: grid;
+    justify-content: stretch;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+  }
+  #slider input {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    height: calc(var(--roundness) * 2);
+    cursor: pointer;
+  }
+  #slider input:focus + .outer {
+    outline: 1px dashed var(--orange);
+  }
+  #slider > label {
+    width: 100%;
+    margin: auto;
+    font-size: 1.5em;
+    padding: 0 0 .5em;
+  }
+  #slider .outer {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    width: 100%;
+    border-radius: var(--roundness);
+    margin: auto;
+    height: var(--roundness);
+    background: var(--midGray);
+    display: flex;
+    align-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+  }
+  #slider label.inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--white);
+    background: linear-gradient(to left, var(--yellow), var(--orange));
+    border-top-left-radius: var(--roundness) !important;
+    border-bottom-left-radius: var(--roundness) !important;
+    position: absolute;
+    transition: all 0.3s cubic-bezier(0.5, 0.4, 0.2, 1);
+    text-align: right;
+    font-size: calc(var(--roundness) * 2);
+    line-height: 1;
+  }
+  #slider label.inner span {
+    position: absolute;
+    right: -2px;
+    top: calc(50% - var(--roundness) * 2);
+    top: calc(var(--roundness) * -.3);
+    transition: inherit;
+  }

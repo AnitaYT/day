@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Accessible Vue Emoji Slider</title>
+    <link rel="stylesheet" href="static/css/mind.css">
+</head>
+
+<body>
+    <div id="slider">
+        <label for="range" :style="{color: getHappinessColor}">情绪程度: {{val}}%</label>
+        <input v-model="val" id="range" type="range" min=0 max=100>
+        <div class="slider outer">
+            <label :style="{width: `${val}%`, borderRadius: greaterThanFifty}" for="range" aria-hidden="true"
+                class="slider inner">
+                <span :style="{right: getPlacement}">{{getHappiness}}</span>
+            </label>
+        </div>
+    </div>
+    <script src='static/js/vue.min.js'></script>
+    <script>
+        const slider = new Vue({
+            el: '#slider',
+            data() {
+                return {
+                    val: 70
+                }
+            },
+            mounted() {
+                this.val = Math.floor(Math.random() * 101)
+            },
+            computed: {
+                getPlacement: function () {
+                    return `${(-0.009 * ((this.val * -1) + 104))}em`;
+                },
+                greaterThanFifty: function () {
+                    return this.val > 50 ? `var(--roundness)` : `0`;
+                },
+                getHappinessColor: function () {
+                    //I don't really understand all this math but it gets us between the two colors so 炉\_(銉�)_/炉
+                    return `rgba(255, ${106 + (103 / 100 * this.val)}, ${(Math.floor(this.val * -1 / 7.692)) + 13}`;
+                },
+                getHappiness: function () {
+                    let mood;
+                    if (this.val == 0) {
+                        mood = "馃が"
+                    } else if (this.val < 10) {
+                        mood = "馃槨"
+                    } else if (this.val < 20) {
+                        mood = "馃槧"
+                    } else if (this.val < 30) {
+                        mood = "馃槮"
+                    } else if (this.val < 40) {
+                        mood = "鈽癸笍"
+                    } else if (this.val < 50) {
+                        mood = "馃檨"
+                    } else if (this.val < 60) {
+                        mood = "馃槓"
+                    } else if (this.val < 70) {
+                        mood = "馃檪"
+                    } else if (this.val < 80) {
+                        mood = "馃槉"
+                    } else if (this.val < 90) {
+                        mood = "馃槃"
+                    } else if (this.val < 100) {
+                        mood = "馃槂"
+                    } else if (this.val == 100) {
+                        mood = "馃槏"
+                    }
+                    return mood;
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

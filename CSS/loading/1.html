@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    html, body {
+        background: #000;
+    }
+    .outer {
+        width: 300px;
+        height: 300px;
+        margin: 100px auto;
+        border-radius: 50%;
+        border: 5px solid #f00;
+        position: relative;
+        /* animation: moves 3s linear 0s infinite; */
+        box-shadow: 10px -100px 10px #000;
+    }
+    .outer::before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: green;
+        left: 120px;
+        top: -5px;
+        border-radius: 50%;
+    }
+    .inner {
+        width: 200px;
+        height: 200px;
+        margin: 50px auto;
+        border-radius: 50%;
+        border: 5px solid #0f0;
+        position: relative;
+        /* animation: moven 3s linear 0s infinite; */
+    }
+    .inner::before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: red;
+        left: 100px;
+        top: -5px;
+        border-radius: 50%;
+    }
+    
+    @keyframes moves {
+        0% {transform: rotate(0deg) }
+        100% { transform: rotate(360deg) }
+    }
+    @keyframes moven {
+        0% {transform: rotate(0deg) }
+        100% { transform: rotate(0deg) }
+    }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+</body>
+</html>
