@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>svg->canvas</title>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        var img = new Image();
+        var svg = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+
+        var DOMURL = self.URL || self.webkitURL || self;
+        var url = DOMURL.createObjectURL(svg);
+
+        img.src = url;
+        // 图像加载完 绘制到canvas里面
+        img.onload = function () {
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+        };
+    </script>
+</body>
+
+</html>

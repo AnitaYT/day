@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css伪类</title>
+    <style>
+        /* 字体颜色渐变 */
+        .one {
+            background-image: -webkit-linear-gradient(bottom, #16a085, #f4d03f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* 第一行 */
+        .one::first-line {
+            font-size: 20px;
+        }
+        /* 首字下沉 */
+        .one::first-letter {
+            font-size: 30px;
+            float: left;
+            margin: 10px;
+        }
+        /* 选中样式 */
+        .one::selection {
+            color: #fff;
+            background: aqua;
+        }
+        /* 空心字体 */
+        .two {
+            font-size: 40px;
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1px  #f4d03f;
+        }
+    </style>
+</head>
+<body>
+    <div class="one">
+        这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字
+        这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字
+        这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字
+        这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字
+        这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字
+        这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字
+        这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字
+        这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字
+        这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字
+    </div>
+    <div class="two">这是一段文字</div>
+</body>
+</html>

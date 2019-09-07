@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>读取svg源码</title>
+</head>
+
+<body>
+    <!-- SVG 文件就是一段 XML 文本，因此可以通过读取 XML 代码的方式，读取 SVG 源码。 -->
+    <div id="svg-container">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+            width="500" height="440">
+            <!-- svg code -->
+        </svg>
+    </div>
+    <script>
+        var svgString = new XMLSerializer().serializeToString(document.querySelector('svg'));
+        console.log("code", svgString)
+    </script>
+</body>
+
+</html>

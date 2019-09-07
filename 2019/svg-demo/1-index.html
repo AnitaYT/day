@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        /* svg {
+            border: 1px solid red;
+        } */
+
+        .red {
+            fill: red;
+        }
+
+        .fancy {
+            /* fill：填充色 */
+            fill: none;
+            /* stroke：描边色 */
+            stroke: black;
+            /* stroke-width：边框宽度 */
+            stroke-width: 3pt;
+        }
+
+        .ttt {
+            stroke: green;
+            stroke-width: 1pt;
+        }
+    </style>
+</head>
+<!-- http://www.ruanyifeng.com/blog/2018/08/svg.html -->
+
+<body>
+    <!-- 
+        > SVG 图像默认大小是300像素（宽） x 150像素（高)
+        > 若只想展示 SVG 图像的一部分，指定viewBox属性
+          <viewBox>属性的值有四个，分别是左上角的横坐标和纵坐标、视口的宽度和高度
+        > 如果不指定width属性和height属性，只指定viewBox属性，则相当于只给定 SVG 图像的长宽比。这时，SVG 图像的默认大小将等于所在的 HTML 元素的大小
+     -->
+    <!-- 1 起步-->
+    <!-- <svg id="mysvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
+        <circle id="mycircle" cx="400" cy="300" r="50" />
+    </svg> -->
+    <!-- <object data="circle.svg" type="image/svg+html"></object> -->
+
+    <!-- <img src="./circle.svg"> -->
+
+    <!-- 2 视口viewBox  viewBox="50 50 50 50" -->
+    <!-- <svg  viewBox="0 0 400 600"  style="border: 1px solid red;">
+        <circle id="mycircle" cx="50" cy="50" r="50" />
+    </svg> -->
+
+    <!-- <svg width="400" height="300" viewBox="0 0 40 30" style="border: 1px solid red;">
+            <rect x="10" y="5" height="15" width="20" style="stroke: #70d5dd; fill: #dd524b" />
+    </svg> -->
+
+    <!-- 3 圆circle：cx、cy、r分别为横坐标、纵坐标和半径，单位为像素。坐标都是相对于<svg>画布的左上角原点。-->
+    <!-- <svg width="300" height="180">
+        <circle cx="30" cy="50" r="25" />
+        <circle cx="90" cy="50" r="25" class="red" />
+        <circle cx="150" cy="50" r="25" class="fancy" />
+    </svg> -->
+
+    <!-- 4 直线line：x1和y1，表示线段起点的横坐标和纵坐标；x2和y2，表示线段终点的横坐标和纵坐标 -->
+    <!-- <svg width="300" height="180">
+        <line x1="0" y1="0" x2="200" y2="0" style="stroke:rgb(0,0,0);stroke-width:5" />
+    </svg> -->
+
+    <!-- 5 折线polyline：points属性指定了每个端点的坐标，横坐标与纵坐标之间与逗号分隔，点与点之间用空格分隔。 -->
+    <!-- <svg width="300" height="180">
+        <polyline points="3,3 30,28 3,53" fill="none" stroke="black" />
+    </svg> -->
+
+    <!-- 6 矩形rect： x和y，指定了矩形左上角端点的横坐标和纵坐标；width属性和height属性指定了矩形的宽度和高度（单位像素）。-->
+    <!-- <svg width="300" height="180">
+        <rect x="0" y="0" height="100" width="200" style="stroke: #70d5dd; fill: #dd524b" />
+    </svg> -->
+
+    <!-- 7 椭圆ellipse： cx和cy，指定了椭圆中心的横坐标和纵坐标（单位像素）；rx和ry，指定了椭圆横向轴和纵向轴的半径（单位像素）。 -->
+    <!-- <svg width="300" height="180">
+        <ellipse cx="60" cy="60" ry="40" rx="20" stroke="black" stroke-width="5" fill="silver" />
+    </svg> -->
+
+    <!-- 8 多边形polyline： points属性指定了每个端点的坐标，横坐标与纵坐标之间与逗号分隔，点与点之间用空格分隔-->
+    <!-- <svg width="300" height="180">
+        <polygon fill="green" stroke="orange" stroke-width="1" points="0,0 100,0 100,100 0,100 0,0" />
+    </svg> -->
+
+
+
+    <!-- <svg>
+        <path
+            d="M16.106 13.214c-.342-.396-.334-.856.005-1.216.59-.626.915-1.448.915-2.32 0-.875-.328-1.7-.92-2.326a.93.93 0 0 1 .014-1.283c.349-.35.827-.119.95.014a5.194 5.194 0 0 1 1.421 3.595 5.202 5.202 0 0 1-1.412 3.585c-.172.184-.771.184-.973-.049zm-2.604 6.146c-.19 0-.379-.047-.553-.142L4.403 14.52H1.174C.525 14.52 0 13.976 0 13.31V6.05c0-.669.525-1.21 1.174-1.21h3.229L12.949.142c.365-.199.803-.19 1.158.03.353.218.569.613.569 1.038v16.94c0 .425-.216.82-.569 1.037a1.172 1.172 0 0 1-.605.173zM1.324 13.08h3.372c.193 0 .383.05.553.143l8.09 4.547V1.576L5.248 6.09c-.17.095-.36.142-.553.142H1.324v6.849zm2.838-7.456h1.236v8.408H4.162V5.624zm13.299 11.254c-.298-.394-.097-.974.286-1.283a7.52 7.52 0 0 0 1.702-1.925 7.669 7.669 0 0 0 1.13-4.03c0-2.319-1.016-4.476-2.784-5.917-.38-.311-.489-.873-.188-1.265.226-.234.787-.207.963-.067C20.743 4.431 22 6.805 22 9.681c0 2.906-1.28 5.598-3.51 7.386-.257.206-.86.072-1.029-.19z"
+            fill="#dd524b" fill-rule="nonzero">
+        </path>
+    </svg> -->
+
+    <!-- 9 路径path： d属性表示绘制顺序，它的值是一个长字符串，每个字母表示一个绘制动作，后面跟着坐标。
+                   M：移动到（moveto）
+                   L：画直线到（lineto）
+                   Z：闭合路径
+    -->
+    <!-- <svg width="300" height="180">
+        <path d="
+              M 18,3
+              L 46,3
+              L 46,40
+              L 61,40
+              L 32,68
+              L 3,40
+              L 18,40
+              Z
+            ">
+        </path>
+    </svg> -->
+
+    <!-- 10 标签text:绘制文本 -->
+    <!-- <svg width="300" height="180" style="border: 1px solid red;"> 
+        <text x="50" y="25">Hello World</text>
+    </svg> -->
+
+    <!-- 11 use复制一个形状：href指定所要复制的节点，x和y是use左上角的坐标-->
+    <!-- <svg viewBox="0 0 30 10" xmlns="http://www.w3.org/2000/svg">
+        <circle id="myCircle" cx="5" cy="5" r="4" />
+        <use href="#myCircle" x="10" y="0" fill="blue" />
+        <use href="#myCircle" x="20" y="0" fill="white" stroke="blue" />
+    </svg> -->
+
+    <!-- 12 g用于将多个形状组成一个组（group），方便复用 -->
+    <!-- <svg width="300" height="100">
+        <g id="myCircle">
+            <text x="25" y="20">圆形</text>
+            <circle cx="50" cy="50" r="20" />
+        </g>
+        <use href="#myCircle" x="100" y="0" fill="blue" />
+        <use href="#myCircle" x="200" y="0" fill="white" stroke="blue" />
+    </svg> -->
+
+    <!-- 13 defs用于自定义形状，它内部的代码不会显示，仅供引用-->
+    <!-- <svg width="300" height="100">
+        <defs>
+            <g id="myCircle">
+                <text x="25" y="20">圆形</text>
+                <circle cx="50" cy="50" r="20" />
+            </g>
+        </defs>
+        <use href="#myCircle" x="0" y="0" />
+        <use href="#myCircle" x="100" y="0" fill="blue" />
+        <use href="#myCircle" x="200" y="0" fill="white" stroke="blue" />
+    </svg> -->
+
+    <!-- 14 pattern：自定义一个形状，该形状可以被引用来平铺一个区域 
+            <pattern>标签将一个圆形定义为dots模式。
+            patternUnits="userSpaceOnUse"表示<pattern>的宽度和长度是实际的像素值。然后，指定这个模式去填充下面的矩形。
+    -->
+    <!-- <svg width="500" height="500">
+        <defs>
+            <pattern id="dots" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                <circle fill="#bee9e8" cx="50" cy="50" r="35" />
+            </pattern>
+        </defs>
+        <rect x="0" y="0" width="100%" height="100%" fill="url(#dots)" />
+    </svg> -->
+
+    <!-- 15  image：xlink:href属性表示图像的来源。-->
+    <!-- <svg viewBox="0 0 100 100" width="100" height="100">
+        <image xlink:href="xxx" width="50%" height="50%" />
+    </svg> -->
+
+    <!-- 16 animate用于产生动画效果, 可以在多个属性上面定义动画 
+            attributeName：发生动画效果的属性名。
+            from：单次动画的初始值。
+            to：单次动画的结束值。
+            dur：单次动画的持续时间。
+            repeatCount：动画的循环模式。
+    -->
+    <svg width="500px" height="500px">
+        <rect x="0" y="0" width="100" height="100" fill="#feac5e">
+            <animate attributeName="x" from="0" to="500" dur="2s" repeatCount="indefinite" />
+            <animate attributeName="width" to="500" dur="2s" repeatCount="indefinite" />
+        </rect>
+    </svg>
+
+    <!-- 17 animateTransform
+            <animate>标签对 CSS 的transform属性不起作用，如果需要变形，就要使用<animateTransform>标签
+    -->
+    <!-- <animateTransform>的效果为旋转（rotate），这时from和to属性值有三个数字，第一个数字是角度值，第二个值和第三个值是旋转中心的坐标。
+        from="0 200 200"表示开始时，角度为0，围绕(200, 200)开始旋转；to="360 400 400"表示结束时，角度为360，围绕(400, 400)旋转。 
+    -->
+    <!-- <svg width="500px" height="500px">
+        <rect x="250" y="250" width="50" height="50" fill="#4bc0c8">
+            <animateTransform attributeName="transform" type="rotate" begin="0s" dur="10s" from="0 200 200" to="360 400 400" repeatCount="indefinite" />
+        </rect>
+    </svg> -->
+</body>
+
+</html>

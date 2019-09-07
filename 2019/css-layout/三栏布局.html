@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>三栏布局</title>
+    <style>
+        .container {
+            padding: 0 100px;
+            margin: 40px;
+            /* border: 1px solid #EEE; */
+        }
+        .left {
+            width: 100px;
+            height: 300px;
+            line-height: 300px;
+            text-align: center;
+            background-image: linear-gradient(to bottom, #65bd60 0%, #5ac1a8 25%, #3ec6ed 50%, #b7ddb7 75%, #fef381 100%);
+            float: left;
+            color: #fff;
+        }
+
+        .right {
+            width: 100px;
+            height: 300px;
+            line-height: 300px;
+            text-align: center;
+            background-image: linear-gradient(to bottom, #29BDD9 0%, #276ACE 100%);
+            float: right;
+            color: #fff;
+        }
+
+        .main {
+            background-image: linear-gradient(to bottom, #FEF9D7 0%, #D299C2 100%);
+            text-align: center;
+            line-height: 300px;
+            color: #fff;
+            height: 300px;
+            margin: 0 120px 0 120px;
+            /* BFC 规则 */
+            /* overflow: hidden; */
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="left">left</div>
+        <div class="right">right</div>
+        <div class="main">main</div>
+    </div>
+</body>
+
+</html>

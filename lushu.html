@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>问问猫宠物定位</title>
+    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+    <script type="text/javascript"
+        src="http://api.map.baidu.com/getscript?v=2.0&ak=CXG067O9s1bTB2u8Mks8tLF1d5Vufet8"></script>
+    <script type="text/javascript" src="./lushu.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h6>{{num | handlerNum}}</h6>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            num: 7
+        },
+        filters: {
+            handlerNum(value) {
+                console.log(value);
+                return value + 2;
+            }
+        }
+    })
+</script>
+
+</html>

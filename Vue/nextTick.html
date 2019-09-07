@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="title">{{msg}}</div>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                msg: "hello"
+            }
+        },
+        mounted() {
+            this.$nextTick(() => {
+                console.log("value=", box.innerHTLML)
+            })
+            this.msg = "world"
+            let box = document.getElementsByClassName('title')[0]
+
+            // 修改数据后数据没有立即更新，dom更新是异步的，无法通过同步代码获取，用$nextTick
+            // this.$nextTick(()=> {
+            //     console.log("value=", box.innerHTLML)
+            // })
+        }
+    })
+</script>
+
+</html>

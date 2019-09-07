@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css-电量图</title>
+    <!-- https://wow.techbrood.com/fiddle/26432 -->
+    <style>
+        .battery {
+            position: relative;
+            display: inline-block;
+            height: 8px;
+            width: 15px;
+            background: #1CBB67;
+            border-radius: 7px;
+            box-sizing: border-box;
+        }
+
+        .battery:before {
+            content: "";
+            position: absolute;
+            background-color: #fff;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 5px;
+            border: 1px solid #1CBB67;
+            box-sizing: border-box;
+        }
+
+        .power {
+            background-color: white;
+            display: block;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            bottom: 2px;
+            right: 2px;
+            border-radius: 5px;
+            /* 电量的范围 */
+            -webkit-transform: scaleX(0.5);   
+            transform: scaleX(0.5);
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            background: #1CBB67;
+            -webkit-transition: -webkit-transform 1s cubic-bezier(0, 0, 0.28, 0.95);
+            transition: -webkit-transform 1s cubic-bezier(0, 0, 0.28, 0.95);
+            transition: transform 1s cubic-bezier(0, 0, 0.28, 0.95);
+            transition: transform 1s cubic-bezier(0, 0, 0.28, 0.95), -webkit-transform 1s cubic-bezier(0, 0, 0.28, 0.95);
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="battery">
+        <div class="power"></div>
+    </div>
+</body>
+
+</html>

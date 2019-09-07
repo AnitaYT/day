@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sticky-footer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            flex-flow: column;
+            min-height: 100vh;
+        }
+
+        header {
+            /* border: 1px solid red; */
+        }
+
+        main {
+            /* border: 1px solid green; */
+        }
+
+        footer {
+            /* border: 1px solid blue; */
+        }
+
+        main {
+            flex: 1;
+        }
+
+        main p::first-letter { 
+            /* 首字下沉 */
+            font-size: 150%;
+            color: red;
+            margin-right: 8px;
+            float: left;
+            
+        }
+        main  p {
+            text-align: justify;
+        }
+        footer {
+            background: #000;
+            opacity: .5;
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- sticky-footer：https://www.jianshu.com/p/127dd8cd42de
+    如果页面内容不够长，footer显示在视窗底部；如果内容足够长，footer内容向下推送。
+    -->
+    <header>
+        <h1>Site name</h1>
+    </header>
+    <main>
+        <p>
+            Bacon Ipsum colie sit a smedfjd fudyehfvdvb这是一段文字这是一段文字这是一段文字这是一段嗯字主卧室一段文字这是一段问字这是一段文字这是一段问啥的呢字有着是的这是一单的问字的这是一段高温字原则好死一段问字这是一段问i 字的啊减肥
+            fudyehfvdvb这是一段文字这是一段文字这是一段文字这是一段嗯字主卧室一段文字这是一段问字这是一段文字这是一段问啥的呢字有着是的这是一单的问字的这是一段高温字原则好死一段问字这是一段问i
+            fudyehfvdvb这是一段文字这是一段文字这是一段文字这是一段嗯字主卧室一段文字这是一段问字这是一段文字这是一段问啥的呢字有着是的这是一单的问字的这是一段高温字原则好死一段问字这是一段问i
+            fudyehfvdvb这是一段文字这是一段文字这是一段文字这是一段嗯字主卧室一段文字这是一段问字这是一段文字这是一段问啥的呢字有着是的这是一单的问字的这是一段高温字原则好死一段问字这是一段问i
+            fudyehfvdvb这是一段文字这是一段文字这是一段文字这是一段嗯字主卧室一段文字这是一段问字这是一段文字这是一段问啥的呢字有着是的这是一单的问字的这是一段高温字原则好死一段问字这是一段问i
+            fudyehfvdvb这是一段文字这是一段文字这是一段文字这是一段嗯字主卧室一段文字这是一段问字这是一段文字这是一段问啥的呢字有着是的这是一单的问字的这是一段高温字原则好死一段问字这是一段问i
+            fudyehfvdvb这是一段文字这是一段文字这是一段文字这是一段嗯字主卧室一段文字这是一段问字这是一段文字这是一段问啥的呢字有着是的这是一单的问字的这是一段高温字原则好死一段问字这是一段问i
+            fudyehfvdvb这是一段文字这是一段文字这是一段文字这是一段嗯字主卧室一段文字这是一段问字这是一段文字这是一段问啥的呢字有着是的这是一单的问字的这是一段高温字原则好死一段问字这是一段问i
+            fudyehfvdvb这是一段文字这是一段文字这是一段文字这是一段嗯字主卧室一段文字这是一段问字这是一段文字这是一段问啥的呢字有着是的这是一单的问字的这是一段高温字原则好死一段问字这是一段问i
+            fudyehfvdvb这是一段文字这是一段文字这是一段文字这是一段嗯字主卧室一段文字这是一段问字这是一段文字这是一段问啥的呢字有着是的这是一单的问字的这是一段高温字原则好死一段问字这是一段问i
+            fudyehfvdvb这是一段文字这是一段文字这是一段文字这是一段嗯字主卧室一段文字这是一段问字这是一段文字这是一段问啥的呢字有着是的这是一单的问字的这是一段高温字原则好死一段问字这是一段问i
+            fudyehfvdvb这是一段文字这是一段文字这是一段文字这是一段嗯字主卧室一段文字这是一段问字这是一段文字这是一段问啥的呢字有着是的这是一单的问字的这是一段高温字原则好死一段问字这是一段问i
+            fudyehfvdvb这是一段文字这是一段文字这是一段文字这是一段嗯字主卧室一段文字这是一段问字这是一段文字这是一段问啥的呢字有着是的这是一单的问字的这是一段高温字原则好死一段问字这是一段问i
+            fudyehfvdvb这是一段文字这是一段文字这是一段文字这是一段嗯字主卧室一段文字这是一段问字这是一段文字这是一段问啥的呢字有着是的这是一单的问字的这是一段高温字原则好死一段问字这是一段问i
+            fudyehfvdvb这是一段文字这是一段文字这是一段文字这是一段嗯字主卧室一段文字这是一段问字这是一段文字这是一段问啥的呢字有着是的这是一单的问字的这是一段高温字原则好死一段问字这是一段问i
+            fudyehfvdvb这是一段文字这是一段文字这是一段文字这是一段嗯字主卧室一段文字这是一段问字这是一段文字这是一段问啥的呢字有着是的这是一单的问字的这是一段高温字原则好死一段问字这是一段问i
+
+        </p>
+    </main>
+    <footer>
+        made wifth bugy aniuiehy pestia
+    </footer>
+</body>
+
+</html>

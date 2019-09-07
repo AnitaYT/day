@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>move line</title>
+</head>
+
+<body>
+    <svg>
+        <path stroke="#000" stroke-width="4.3" fill="none" d="M11.6 269s-19.7-42.4 6.06-68.2 48.5-6.06 59.1 12.1l-3.03 28.8 209-227s45.5-21.2 60.6 1.52c15.2 22.7-3.03 47-3.03 47l-225 229s33.1-12 48.5 7.58c50 63.6-50 97-62.1 37.9" stroke-dasharray="" stroke-dashoffset="0.00" />
+    </svg>
+    <script>
+        var path = document.querySelector('.squiggle-animated path');
+        var length = path.getTotalLength();
+        // 清除之前的动作
+        path.style.transition = path.style.WebkitTransition =
+            'none';
+        // 设置起始点
+        path.style.strokeDasharray = length + ' ' + length;
+        path.style.strokeDashoffset = length;
+        // 获取一个区域，获取相关的样式，让浏览器寻找一个起始点。
+        path.getBoundingClientRect();
+        // 定义动作
+        path.style.transition = path.style.WebkitTransition =
+            'stroke-dashoffset 2s ease-in-out';
+        // Go!
+        path.style.strokeDashoffset = '0';
+    </script>
+</body>
+
+</html>

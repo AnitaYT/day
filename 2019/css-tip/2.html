@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css多边形</title>
+    <style>
+    .container {
+        margin: 300px;
+    }
+    .list {
+        width: 200px;
+        height: 250px;
+        transform: rotate(120deg);
+        overflow: hidden;
+        /* border: 1px solid blue; */
+    }
+    .list_child {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        transform: rotate(-60deg);
+        /* border: 1px solid green; */
+    }
+    .list_child_child {
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        transform: rotate(-60deg);
+        background: red;
+        color: #fff;
+        line-height: 250px;
+    }
+    </style>
+</head>
+<body>
+    <!-- 正六边形 -->
+    <div class="container">
+        <div class="list">
+            <div class="list_child">
+                 <div class="list_child_child">六边形</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

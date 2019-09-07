@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>百度地图之自动提示--autoComplete</title>
+</head>
+<body>
+<button id="btn1">将深圳设置为检索区域</button>
+<button id="btn2">将上海设置为检索区域</button>
+<input id="register2suggestId" size="30" type="text" class="w-100-nick" placeholder="请输入"/>
+<div id="register2map" style="width:300px;height:200px;"></div>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=ZUHewhg0KDCnZa5emK9hxRib&callback=init"></script>
+<script>
+
+    window.windowMapBusiness = {
+        //创建和初始化地图函数：
+        initMap: function (id, addr, s) {
+            this.createMap(id, addr, s);//创建地图
+            this.setMapEvent();//设置地图事件
+            this.addMapControl();//向地图添加控件
+        },
+        //创建地图函数：
+        createMap: function (id, addr, s) {
+            s = s ? s : 8;
+            window.map = new BMap.Map(id);// 将map变量存储在全局 在百度地图容器中创建一个地图
+            if (addr) {
+                map.centerAndZoom(addr, s);//设定地图的中心点和坐标并将地图显示在地图容器中
+            } else {
+                var geolocation = new BMap.Geolocation();  //实例化定位对象。
+                geolocation.getCurrentPosition(function (r) {   //定位结果对象会传递给r变量 r.point.lng 经度 r.point.lat 纬度
+                    if (this.getStatus() == BMAP_STATUS_SUCCESS) {  //通过Geolocation类的getStatus()可以判断是否成功定位。
+                        map.centerAndZoom(r.point, s);//设定地图的中心点和坐标并将地图显示在地图容器中
+                        var mk = new BMap.Marker(r.point);    //基于定位的这个点的点位创建marker
+                        map.addOverlay(mk);    //将marker作为覆盖物添加到map地图上
+                        map.panTo(r.point);   //将地图中心点移动到定位的这个点位置。注意是r.point而不是r对象。
+                    } else {
+                        map.centerAndZoom('广东省深圳市', s);//设定地图的中心点和坐标并将地图显示在地图容器中
+                    }
+                }, {enableHighAccuracy: true});
+            }
+        },
+        //地图事件设置函数：
+        setMapEvent: function () {
+            map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+            map.enableKeyboard();//启用键盘上下左右键移动地图
+            //map.disableDragging();     //禁止拖拽
+//            map.enableDragging();   // 开启拖拽
+            map.enableInertialDragging();   // 开启惯性拖拽
+        },
+        //地图控件添加函数：
+        addMapControl: function (sc) {
+            //向地图中添加缩放控件
+            var ctrl_nav = new BMap.NavigationControl({
+                anchor: BMAP_ANCHOR_TOP_LEFT,
+                type: BMAP_NAVIGATION_CONTROL_LARGE
+            });
+            map.addControl(ctrl_nav);
+            //向地图中添加缩略图控件
+            if (sc) {
+                var ctrl_ove = new BMap.OverviewMapControl({
+                    anchor: BMAP_ANCHOR_BOTTOM_RIGHT,
+                    isOpen: 1
+                });
+                map.addControl(ctrl_ove);
+                //向地图中添加比例尺控件
+                var ctrl_sca = new BMap.ScaleControl({
+                    anchor: BMAP_ANCHOR_BOTTOM_LEFT
+                });
+                map.addControl(ctrl_sca);
+            }
+        },
+        // 设置单个标注-有单行提示文字
+        addMarker: function (addr, sc, lf, top) {
+            map.clearOverlays();//清除所有标注
+            new BMap.Geocoder().getPoint(addr, function (point) {
+                if (point) {
+                    var sc = sc ? sc : 8,
+                            lf = lf ? lf : 10 - addr.length * 6,//百度地图标注字体12px
+                            top = top ? top : -20,
+                            address = new BMap.Point(point.lng, point.lat);
+                    map.centerAndZoom(address, sc);
+                    var marker = new BMap.Marker(point);
+                    map.addOverlay(marker);
+                    marker.setLabel(new BMap.Label(addr, {offset: new BMap.Size(lf, top)}));
+                }
+            });
+        },
+
+//处理地址--传入地址、函数 处理经纬度等 执行环境window  赋值通过scope 如 $scope.Lon=point.lng; $scope.Lat=point.lat;
+        responseAddr: function (addr, fun) {
+            new BMap.Geocoder().getPoint(addr, function (point) {
+                if (point) {//point.lng  point.lat
+                    fun(point);
+                }
+            });
+        },
+//百度地图自动提示 -（未解决）还是检索的上一次的区域
+        autoComplete: function (suggestId, setLocation, keywords, sc, lf, top) {// id必填 keywords-array 其余-string
+            var me = this,
+            //建立一个自动完成的对象
+                    ac = new BMap.Autocomplete({
+                        "input": suggestId, //输入框id
+                        "location": setLocation//设定返回结果的所属范围
+                    }),
+                    iptTrigger = document.getElementById(suggestId);
+
+            //删除多余的元素，但百度地图自动生成的js报错 报错并不影响提示功能  暂设置为隐藏多余元素
+            function hideRestAcBox() {
+                var elm = Array.prototype.slice.call(document.getElementsByClassName('tangram-suggestion-main'));
+                if (elm.length) {
+                    elm.forEach(function (v, i) {
+//        v.parentNode.removeChild(v);
+                        v.style.zIndex = -1;
+                        v.style.visibility = 'hidden';
+                    });
+                    elm[elm.length - 1].style.zIndex = 999;
+                    elm[elm.length - 1].style.visibility = 'visible';
+                }
+            }
+
+            function hideAcBox() {
+                var elm = Array.prototype.slice.call(document.getElementsByClassName('tangram-suggestion-main'));
+                elm.forEach(function (v, i) {
+                    v.style.zIndex = -1;
+                    v.style.visibility = 'hidden';
+                });
+            }
+
+            //输入框的值控制 提示信息列表容器显示隐藏
+            function boxHide() {
+                console.log(this.value);
+                if (this.value) {
+                    if (keywords) {//发起某个关键字的提示请求，会引起onSearchComplete的回调
+                        ac.search.apply(ac, keywords);
+                    }
+                    hideRestAcBox();
+                } else {
+                    hideAcBox();
+                }
+            }
+
+            iptTrigger.oninput = boxHide;//非ie
+            iptTrigger.onpropertychange = boxHide;//ie
+            //鼠标点击下拉列表后的事件
+            ac.addEventListener("onconfirm", function (e) {
+                hideAcBox();
+                var _value = e.item.value;
+                var myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
+                console.log(myValue);
+                me.addMarker(myValue, sc, lf, top);
+            });
+        }
+
+    };
+
+
+    document.getElementById('btn1').onclick = function () {
+        console.log(1);
+
+        windowMapBusiness.autoComplete('register2suggestId', '深圳市', ['大厦', '楼', '大学', '校区', '学院', '中专', '中学', '小学', '幼儿园']);
+
+    };
+    document.getElementById('btn2').onclick = function () {
+        console.log(2);
+
+        windowMapBusiness.autoComplete('register2suggestId', '上海市', ['大厦', '楼', '大学', '校区', '学院', '中专', '中学', '小学', '幼儿园']);
+
+    };
+
+    setTimeout(function () {
+        windowMapBusiness.initMap('register2map', '深圳');
+    }, 1000);
+</script>
+</body>
+</html>
